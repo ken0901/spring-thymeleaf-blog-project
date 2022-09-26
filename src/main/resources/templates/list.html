@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog list page</title>
+</head>
+<style>
+    .layout{
+        width: 500px;
+        margin : 0 auto;
+        margin-top : 40px;
+    }
+</style>
+<body>
+    <div class="layout">
+        <table>
+            <thead>
+                <tr>
+                    <th>Blog No</th>
+                    <th>Title</th>
+                    <th>Content</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="blog : ${list}">
+                    <td th:text="${blog.id}"></td>
+                    <td th:text="${blog.title}"></td>
+                    <td th:text="${blog.content}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

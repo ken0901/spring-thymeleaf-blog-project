@@ -4,6 +4,7 @@ import com.ken.blog.entity.Blog;
 import com.ken.blog.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +23,16 @@ public class BlogController {
     }
 
     @PostMapping("/blog/writePro")
-    public String boardWritePro(Blog blog){
+    public String blogWritePro(Blog blog){
 
         blogService.write(blog);
         return "";
+    }
+
+    @GetMapping("/blog/list")
+    public String blogList(Model model){
+        model.addAttribute("list",blogService.blogList());
+
+        return "list";
     }
 }
