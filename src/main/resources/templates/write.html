@@ -20,9 +20,10 @@
 </style>
 <body>
 <div class="layout">
-  <form action="/blog/writePro" method="post">
+  <form action="/blog/writePro" method="post" enctype="multipart/form-data">
     <input name="title" type="text">
     <textarea name="content"></textarea>
+    <input type="file" name="file">
     <button tpye="submit">Submit</button>
   </form>
 </div>

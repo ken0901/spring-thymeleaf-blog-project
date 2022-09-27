@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class BlogController {
@@ -15,14 +16,13 @@ public class BlogController {
 
     @GetMapping("/blog/write")
     public String blogWriteForm(){
-        System.out.println("test");
         return "write";
     }
 
     @PostMapping("/blog/writePro")
-    public String blogWritePro(Blog blog, Model model){
+    public String blogWritePro(Blog blog, Model model, MultipartFile file) throws Exception{
 
-        blogService.save(blog);
+        blogService.save(blog, file);
 
         model.addAttribute("message","Your blog was completed");
         model.addAttribute("searchUrl", "/blog/list");
@@ -56,11 +56,11 @@ public class BlogController {
     }
 
     @PostMapping("/blog/update/{id}")
-    public String blogUpdate(@PathVariable Integer id,Blog blog){
+    public String blogUpdate(@PathVariable Integer id,Blog blog, MultipartFile file) throws Exception{
         Blog blogTemp = blogService.view(id);
         blogTemp.setTitle(blog.getTitle());
         blogTemp.setContent(blog.getContent());
-        blogService.save(blogTemp);
+        blogService.save(blogTemp,file);
 
         return "redirect:/blog/list";
     }
