@@ -13,11 +13,19 @@ public class BlogService {
     @Autowired
     private BlogRepository blogRepository;
 
-    public void write(Blog blog){
+    public void save(Blog blog){
         blogRepository.save(blog);
     }
 
-    public List<Blog> blogList(){
+    public List<Blog> list(){
         return blogRepository.findAll();
+    }
+
+    public Blog view(Integer id){
+        return blogRepository.findById(id).get();
+    }
+
+    public void detele(Integer id){
+        blogRepository.deleteById(id);
     }
 }

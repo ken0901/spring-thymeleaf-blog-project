@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog Modify Form</title>
+</head>
+
+<style>
+    .layout{
+        width: 500px;
+        margin : 0 auto;
+        margin-top : 40px;
+    }
+
+    .layout input, textarea {
+        width: 100%;
+        box-sizing : border-box;
+        margin-top : 10px
+    }
+</style>
+<body>
+<div class="layout">
+  <form th:action="@{/blog/update/{id}(id=${blog.id})}" method="post">
+    <input name="title" type="text" th:value="${blog.title}">
+    <textarea name="content" th:text="${blog.content}"></textarea>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+</body>
+</html>

@@ -18,15 +18,15 @@
                 <tr>
                     <th>Blog No</th>
                     <th>Title</th>
-                    <th>Content</th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr th:each="blog : ${list}">
                     <td th:text="${blog.id}"></td>
-                    <td th:text="${blog.title}"></td>
-                    <td th:text="${blog.content}"></td>
+                    <td>
+                        <a th:text="${blog.title}" th:href="@{/blog/view(id=${blog.id})}"></a>
+                    </td>
                 </tr>
             </tbody>
         </table>
