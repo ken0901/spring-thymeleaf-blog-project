@@ -3,6 +3,8 @@ package com.ken.blog.service;
 import com.ken.blog.entity.Blog;
 import com.ken.blog.repository.BlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,8 +34,9 @@ public class BlogService {
         blogRepository.save(blog);
     }
 
-    public List<Blog> list(){
-        return blogRepository.findAll();
+    public Page<Blog> list(Pageable pageable){
+
+        return blogRepository.findAll(pageable);
     }
 
     public Blog view(Integer id){
