@@ -20,10 +20,14 @@ public class BlogController {
     }
 
     @PostMapping("/blog/writePro")
-    public String blogWritePro(Blog blog){
+    public String blogWritePro(Blog blog, Model model){
 
         blogService.save(blog);
-        return "";
+
+        model.addAttribute("message","Your blog was completed");
+        model.addAttribute("searchUrl", "/blog/list");
+
+        return "message";
     }
 
     @GetMapping("/blog/list")
