@@ -39,6 +39,10 @@ public class BlogService {
         return blogRepository.findAll(pageable);
     }
 
+    public Page<Blog> search(String keyword, Pageable pageable){
+        return blogRepository.findByTitleContaining(keyword, pageable);
+    }
+
     public Blog view(Integer id){
         return blogRepository.findById(id).get();
     }

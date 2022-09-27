@@ -36,9 +36,15 @@ public class BlogController {
 
     @GetMapping("/blog/list")
     public String blogList(Model model, @PageableDefault(page = 0, size = 10, sort = "id",
-            direction = Sort.Direction.DESC) Pageable pageable){
+            direction = Sort.Direction.DESC) Pageable pageable, String keyword){
 
-        Page<Blog> list = blogService.list(pageable);
+        Page<Blog> list  = null;
+
+        if(keyword != null){
+            list = blogService.search(keyword,pageable);
+        }else{
+            list = blogService.list(pageable);
+        }
 
         int nowPage = list.getPageable().getPageNumber() + 1;
         int startPage = Math.max(nowPage -4, 1);
